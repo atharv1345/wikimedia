@@ -313,6 +313,12 @@
 
 				deferred.resolve();
 				this.emit( 'fileSaved', this.upload.getImageInfo() );
+
+				// Auto-open PDF files after successful upload
+				const imageInfo = this.upload.getImageInfo();
+				if ( imageInfo && imageInfo.mime === 'application/pdf' ) {
+					window.open( imageInfo.url || this.upload.getImageInfo().url, '_blank' );
+				}
 			}, () => {
 				this.getErrorMessageForStateDetails().then( ( errorMessage ) => {
 					deferred.reject( errorMessage );

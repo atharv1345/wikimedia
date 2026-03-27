@@ -37,6 +37,7 @@ class MediaHandlerFactory {
 		'image/x-djvu' => DjVuHandler::class, // compat
 		'image/jp2' => Jpeg2000Handler::class,
 		'image/jpx' => Jpeg2000Handler::class,
+		'application/pdf' => PdfHandler::class,
 	];
 
 	/** @var LoggerInterface */

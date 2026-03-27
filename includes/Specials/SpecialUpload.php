@@ -865,10 +865,16 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-		// Success, redirect to description page
+		// Success, redirect to description page (or file URL for PDFs)
 		$this->mUploadSuccessful = true;
 		$this->getHookRunner()->onSpecialUploadComplete( $this );
-		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
+		
+		// For PDF files, redirect directly to the file URL so it opens automatically
+		if ( $this->mLocalFile && $this->mLocalFile->getMimeType() === 'application/pdf' ) {
+			$this->getOutput()->redirect( $this->mLocalFile->getFullUrl() );
+		} else {
+			$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
+		}
 	}
 
 	/**
