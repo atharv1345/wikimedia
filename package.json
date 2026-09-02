@@ -10,7 +10,7 @@
 		"qunit": "grunt qunit",
 		"selenium-test": "if [ \"$CI\" = true ]; then node tests/selenium/docs/Stack/webdriverio.js; fi && wdio ./tests/selenium/wdio.conf.js",
 		"test": "grunt lint && npm run doc && npm run jest",
-		"jest": "jest --config tests/jest/jest.config.js"
+		"jest": "^30.0.0"
 	},
 	"devDependencies": {
 		"@apidevtools/swagger-parser": "^10.1.0",
